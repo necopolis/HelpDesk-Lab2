@@ -5,8 +5,6 @@ block content
     .col-12.ms-auto.text-center
       h1.bold= title
     .row 
-      .col-5.me-auto
-        h2(style="font-weight: bold") Bienvenido #{empleado.nombre} #{empleado.apellido}
     .col-12.ms-auto.me-auto
       if(mensaje.length > 0)
           .row.mx-auto
@@ -20,29 +18,6 @@ block content
               .alert.alert-info.alert-dismissible.fade.show(role='alert')
                   strong #{mensajeError} 
                   button.btn-close(type='button' data-bs-dismiss='alert' aria-label='Close')
-  //.row
-    .col
-      button.btn.btn-warning(type='button' data-bs-toggle='modal' data-bs-target='#exampleModal') Cambiar contraseña
-      #exampleModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
-        .modal-dialog
-          .modal-content(style="color:black")
-            .modal-header
-              h5#exampleModalLabel.modal-title Ingrese su antigua y nueva contraseña
-              button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
-            .modal-body
-              .row.align-items-center
-                .col-7.ms-auto.me-auto
-                  form(name="registro", action=action, method="post")
-                    .mb-3.row
-                      label(for="antigua") Contraseña actual
-                      input(type="password", name="antigua")
-                    .mb-3.row
-                      label(for="nueva") Contraseña nueva
-                      input(type="password", name="nueva", id="nueva")
-                    .mb-3.row
-                      button.btn.btn-danger(type="submit", onclick="return validarContraseña()") Enviar
-            .modal-footer
-              button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cerrar
   .row
     .col
       if(Solicitud.length > 0)

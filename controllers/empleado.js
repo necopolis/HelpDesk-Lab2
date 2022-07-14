@@ -34,7 +34,8 @@ exports.index = async (request, response)=>{
 }
 exports.cambiarContraseña = async (request, response)=>{
     var salt = await bcrypt.genSalt(10);
-    var empleado = await Empleado.findByPk(request.session.dni);
+    var empleado = await Empleado.findByPk(request.session.dni,
+        {include: Area});
     var cv = await bcrypt.compare(request.body.antigua, empleado.contraseña);
     if(cv){
         var contraseña = await bcrypt.hash(request.body.nueva, salt);
@@ -77,7 +78,8 @@ exports.listar = async (request, response) =>{
     });
 }
 exports.formAgregar = async (request, response) => {
-    const empleado = await Empleado.findByPk(request.session.dni);
+    var empleado = await Empleado.findByPk(request.session.dni,
+        {include: Area});
     const areas = await Area.findAll();
     response.render("./admin/empleado/empleadoForm",{ 
         area: areas,
@@ -120,7 +122,8 @@ exports.agregar = async (request, response)=> {
 }
 exports.formActualizar = async (request, response) =>{
     const areas = await Area.findAll();
-    const empleado = await Empleado.findByPk(request.session.dni);
+    var empleado = await Empleado.findByPk(request.session.dni,
+        {include: Area});
     response.render("./admin/empleado/empleadoForm",{
         area: areas,
         user:empleado,

@@ -6,7 +6,8 @@ const Empleado = require("../models").Empleado;
 
 
 exports.listar = async (request, response) =>{
-    const empleado = await Empleado.findByPk(request.session.dni);
+    var empleado = await Empleado.findByPk(request.session.dni,
+        {include: Area});
     const areas = await Area.findAll({
         where:{id_area: {[Op.gt]: 3}}
     });
@@ -39,7 +40,8 @@ exports.agregar = async (request, response) => {
     }
 }
 exports.formActualizar = async (request, response) =>{
-    const empleado = await Empleado.findByPk(request.session.dni);
+    var empleado = await Empleado.findByPk(request.session.dni,
+        {include: Area});
     var areaR = await Area.findByPk(request.params.id);
     response.render("./admin/area/areaForm",{
         area: areaR,

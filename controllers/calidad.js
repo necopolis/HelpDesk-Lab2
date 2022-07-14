@@ -1,8 +1,10 @@
 const Empleado = require('../models').Empleado;
 const Notificaciones = require('../models').Notificacion;
+const Area = require("../models").Area;
 
 exports.index = async (request, response) =>{
-    var empleado = await Empleado.findByPk(request.session.dni);
+    var empleado = await Empleado.findByPk(request.session.dni,
+        {include: Area});
     var notificaciones = await Notificaciones.findAll( {where:{estado:"Pendiente"}});
     response.render("./calidad/index",{
         title: "Area de Calidad",

@@ -1,4 +1,5 @@
 const Cliente = require("../models").Cliente;
+const Area = require("../models").Area;
 const Solicitud = require("../models").Solicitud;
 const bcrypt = require("bcrypt");
 const Empleado = require("../models").Empleado;
@@ -27,6 +28,7 @@ exports.formSolicitud = async (request, response)=>{
     const cliente = await Cliente.findByPk(request.session.dni);
     response.render('./cliente/formSolicitud',{
         cliente: cliente,
+        user:cliente,
         pagina:"cliente",
         user:null
     });
@@ -74,7 +76,8 @@ exports.cambiarContraseña = async (request, response)=>{
 //Gestion de clientes
 
 exports.listarDesac = async (request, response) =>{
-    var empleado = await Empleado.findByPk(request.session.dni);
+    var empleado = await Empleado.findByPk(request.session.dni,
+        {include: Area});
     var clientes = await Cliente.findAll();
     var a = clientes.length;
     response.render("./admin/cliente/index",{

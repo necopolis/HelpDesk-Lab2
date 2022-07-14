@@ -21,7 +21,7 @@ block content
         .row 
             .col
                 table.table
-                    tr.table-primary.text-center
+                    tr.bg-dark.text-white.text-center
                         th Fecha de ingreso al area
                         th Fechea de egreso del area
                         th Nro. Ticket
@@ -30,7 +30,7 @@ block content
                         th Area
                         th Prioridad
                     each s in solic
-                        tr.table-info(style="font-weight: bold") 
+                        tr.bold
                             td.text-center= s.fecha_ingreso.toLocaleString()
                             td.text-center= s.fecha_egreso ? s.fecha_egreso.toLocaleString() : ""
                             td.text-center= s.Solicitud.nro_ticket
