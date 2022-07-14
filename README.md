@@ -31,12 +31,12 @@ USUARIO PARA REALIZAR LAS PRUEBAS
     -contraseñas: 12345678
 
 ------------------------
-### Codigo para desplegar las pruebas
-# Creacion de la base de datos
+## Codigo para desplegar las pruebas
+ ### Creacion de la base de datos
     -npm install
- # Creacion de la base de datos
+ ### Creacion de la base de datos
     -npx sequelize-cli db:create
-# Migracion de los modelos, tablas, relaciones, eventos, trigger, procedures
+ ### Migracion de los modelos, tablas, relaciones, eventos, trigger, procedures
     -npx sequelize-cli db:migrate
-# LLenar las tablas (Semillas) con Datos (admin, clientes y empleados)
+ ### LLenar las tablas (Semillas) con Datos (admin, clientes y empleados)
     -npx sequelize-cli db:seed:all
