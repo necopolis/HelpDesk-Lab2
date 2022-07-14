@@ -1,0 +1,66 @@
+nav.navbar.bg-dark.py-1
+	a.navbar-brand(href='/')
+		img.d-inline-block.align-top(src='/logo.png' height='60' alt='LogoHelpDek')
+	|	
+	if (user==null & cliente== null) 
+		div
+			a.btn.btn-sm.btn-outline-info.rounded-pill.my-2.mx-2.mr-auto(onclick="location.href='/singup'") Registrarse
+			a.btn.btn-sm.btn-info.rounded-pill.my-2.mx-2.mr-auto(onclick="location.href='/login'") Ingresar
+	else 
+		if (user)
+			div.dropdown
+				a.btn.btn-sm.btn-info.rounded.dropdown-toggle(data-bs-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false') Usuario, #{user.mail}
+				.dropdown-menu.rounded.mr-auto
+					a.dropdown-item(type="submit" onclick="location.href='./cliente/actualizar'") Cuenta
+					a.dropdown-item(type='button' data-bs-toggle='modal' data-bs-target='#exampleModal') Cambiar contraseña
+					.dropdown-divider
+					a.dropdown-item(type="submit" onclick="location.href='/logout'") Salir
+				#exampleModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
+					.modal-dialog
+						.modal-content
+							.modal-header
+								h5#exampleModalLabel.modal-title Ingrese su antigua y nueva contraseña
+								button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+							.modal-body
+								.row.align-items-center
+									.col-7.ms-auto.me-auto
+										form(name="registro", action="./cambiarCont", method="post")
+											.mb-3.row
+												label(for="antigua") Contraseña actual
+												input(type="password", name="antigua")
+											.mb-3.row
+												label(for="nueva") Contraseña nueva
+												input(type="password", name="nueva", id="nueva")
+											.mb-3.row
+												button.btn.btn-danger(type="submit", onclick="return validarContraseña()") Enviar
+							.modal-footer
+								button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cerrar
+		else
+			div.dropdown
+				a.btn.btn-sm.btn-info.rounded.dropdown-toggle(data-bs-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false') Usuario, #{cliente.mail}
+				.dropdown-menu.rounded.mr-auto
+					a.dropdown-item(href="/cliente/actualizar") Cuenta
+					a.dropdown-item(type='button' data-bs-toggle='modal' data-bs-target='#exampleModal') Cambiar contraseña
+					.dropdown-divider
+					a.dropdown-item(type="submit" onclick="location.href='/logout'") Salir
+				#exampleModal.modal.fade(tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true')
+					.modal-dialog
+						.modal-content
+							.modal-header
+								h5#exampleModalLabel.modal-title Ingrese su antigua y nueva contraseña
+								button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+							.modal-body
+								.row.align-items-center
+									.col-7.ms-auto.me-auto
+										form(name="registro", action=`${pagina}/cambiarCont`, method="post")
+											.mb-3.row
+												label(for="antigua") Contraseña actual
+												input(type="password", name="antigua")
+											.mb-3.row
+												label(for="nueva") Contraseña nueva
+												input(type="password", name="nueva", id="nueva")
+											.mb-3.row
+												button.btn.btn-danger(type="submit", onclick="return validarContraseña()") Enviar
+							.modal-footer
+								button.btn.btn-secondary(type='button' data-bs-dismiss='modal') Cerrar
+		

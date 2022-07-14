@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    .row.mx-auto
+      .col-5.mx-auto.my-4
+        .card.rounded
+          .card-body.p-4
+            form(action='/login' method='POST')
+              .form-group
+                label(for="email") Email
+                input.form-control#email(required, type='email', name='mail', placeholder='Email', autofocus=true)
+              .form-group
+                label(for="password") Contraseña
+                input.form-control#pass(type='password', name='contraseña', placeholder='Contraseña', required)
+              .form-group.text-center
+                input.btn.btn-primary(type="submit" value="Ingresar")

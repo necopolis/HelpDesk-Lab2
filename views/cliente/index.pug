@@ -1,0 +1,49 @@
+extends ../layout
+
+block content
+        .container
+            .row
+                .col-12.ms-auto.me-auto
+                    if(mensaje.length > 0)
+                        .row.mx-auto
+                            .col-5.mx-auto.mt-4.text-center
+                            .alert.alert-info.alert-dismissible.fade.show(role='alert')
+                                strong #{mensaje} 
+                                button.btn-close(type='button' data-bs-dismiss='alert' aria-label='Close')
+                    if(mensajeError.length > 0)
+                        .row.mx-auto
+                            .col-5.mx-auto.mt-4.text-center
+                            .alert.alert-info.alert-dismissible.fade.show(role='alert')
+                                strong #{mensajeError} 
+                                button.btn-close(type='button' data-bs-dismiss='alert' aria-label='Close')
+                    if(ticket.length > 0)
+                        .row.mx-auto
+                            .col-5.mx-auto.mt-4.text-center
+                            .alert.alert-info.alert-dismissible.fade.show(role='alert')
+                                strong #{ticket} 
+                                button.btn-close(type='button' data-bs-dismiss='alert' aria-label='Close')
+            br
+            .row
+                .col
+                    if(solicitud.length > 0)
+                        table.table
+                            thead
+                                tr.bg-dark.text-white
+                                    th(scope='col') Nro. Ticket
+                                    th(scope='col') Detalle
+                                    th(scope='col') Tipo 
+                                    th(scope='col') Fecha
+                                    th(scope='col') Seguir
+                                each solic in solicitud
+                                    tr
+                                        td(scope='row') #{solic.nro_ticket}
+                                        td(scope='row') #{solic.detalle}
+                                        td(scope='row') #{solic.tipo} 
+                                        td(scope='row') #{solic.fecha_solicitud.toLocaleString()}
+                                        td(scope='row') 
+                                            form(action="/cliente/solicitud/"+solic.id_solicitud, method="get")
+                                                input.btn.btn-dark(type="submit", value="Seguir")
+                    else 
+                        h4 No ha creado solicitudes todavia.
+                    br
+                    br

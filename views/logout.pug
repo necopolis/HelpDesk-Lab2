@@ -1,0 +1,11 @@
+extends layout
+
+block content
+        .container
+            .row
+                .col-7.ms-auto.me-auto.text-center(style="padding-top: 3rem")
+                    h4 Sesión finalizada correctamente
+                    h2 Gracias por usar nuestros servicios
+                script.
+                    function redireccionar(){window.location="http://localhost:3000/";}
+                    setTimeout ("redireccionar()", 3000);

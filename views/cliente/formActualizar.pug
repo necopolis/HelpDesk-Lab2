@@ -1,0 +1,30 @@
+extends ../layout
+
+block content
+    .container
+        .row.align-items-center
+            .col-7.ms-auto.text-center
+                h1(style="font-weight: bold") Actualizar cliente: #{cliente.nombre}  #{cliente.apellido}
+        .row.align-items-center
+            .col-4.ms-auto
+                h4 DNI: #{cliente.dni}
+            .col-4.me-auto
+                h4 Mail: #{cliente.mail}
+        br
+        .row.align-items-center
+            .col-7.ms-auto.me-auto
+                - var url = cliente ? cliente.dni+"?_method=PUT" : "";
+                form(name="registro", action="./actualizar/"+url, method="post")
+                    .mb-3.row
+                        label.col-sm-2.col-form-label.bg-info(for="nombre") Nombre: 
+                        input.col-sm-10(type="text" name="nombre" id="nombre" value=cliente ? cliente.nombre: "")
+                    .mb-3.row
+                        label.col-sm-2.col-form-label.bg-info(for="apellido") Apellido: 
+                        input.col-sm-10(type="text" name="apellido" id="apellido" value=cliente ? cliente.apellido: "")
+                    .mb-3.row
+                        label.col-sm-2.col-form-label.bg-info(for="celular") Celular:
+                        input.col-sm-10(type="tel", name="celular" value=cliente ? cliente.celular: "")
+                    .mb-3.row
+                        .col-sm-6.ms-auto.me-auto
+                            .d-grid.gap-2
+                                input.btn.btn-success.btn-lg(type="submit", onclick="return validarRegistro()", value="Actualizar")

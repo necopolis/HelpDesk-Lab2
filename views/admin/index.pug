@@ -1,0 +1,33 @@
+extends ../layout
+
+block content
+        .container
+            .row
+                .col-10.ms-auto.text-center
+                    h1(style="font-weight: bold")= title
+            .row 
+                .col-5.me-auto
+                  h2(style="font-weight: bold") Bienvenido #{user.nombre} #{user.apellido}
+                .col-12.ms-auto.me-auto
+                  //if(mensaje.length > 0)
+                    .row.mx-auto
+                        .col-5.mx-auto.mt-4.text-center
+                        .alert.alert-info.alert-dismissible.fade.show(role='alert')
+                            strong #{mensaje} 
+                            button.btn-close(type='button' data-bs-dismiss='alert' aria-label='Close')
+                  //if(mensajeError.length > 0)
+                    .row.mx-auto
+                        .col-5.mx-auto.mt-4.text-center
+                        .alert.alert-info.alert-dismissible.fade.show(role='alert')
+                            strong #{mensajeError} 
+                            button.btn-close(type='button' data-bs-dismiss='alert' aria-label='Close')
+            .row.text-center
+                //.col
+                    .d-grid.gap-2
+                      button.btn.btn-primary(type="submit" onclick="location.href='./admin/area/'")(style="font-weight: bold") Areas
+                //.col
+                    .d-grid.gap-2
+                      button.btn.btn-primary(type="submit" onclick="location.href='./admin/empleado/'")(style="font-weight: bold") Empleados 
+                //.col
+                    .d-grid.gap-2
+                      button.btn.btn-primary(type="submit" onclick="location.href='./admin/cliente/'")(style="font-weight: bold") Clientes

@@ -1,0 +1,74 @@
+extends ../../layout
+
+block content
+    .container
+        .row
+            .col-10.ms-auto.text-center
+                h1.bold Gestion de Empleados
+            .col-2.ms-auto.me-auto
+                .d-grid.gap-2
+                    button.btn.btn-danger(type="submit", onclick="location.href='/admin'")(style="font-weight: bold") VOLVER 
+            .col-12.ms-auto.me-auto
+                //if(mensaje.length > 0)
+                    .row.mx-auto
+                        .col-5.mx-auto.mt-4.text-center
+                        .alert.alert-info.alert-dismissible.fade.show(role='alert')
+                            strong #{mensaje} 
+                            button.btn-close(type='button' data-bs-dismiss='alert' aria-label='Close')
+                //if(mensajeError.length > 0)
+                    .row.mx-auto
+                        .col-5.mx-auto.mt-4.text-center
+                        .alert.alert-info.alert-dismissible.fade.show(role='alert')
+                            strong #{mensajeError} 
+                            button.btn-close(type='button' data-bs-dismiss='alert' aria-label='Close')
+        .row(style="padding-top: 3rem; padding-bottom: 3rem")
+            .col-3.me-auto
+                .d-grid.gap-2
+                    button.btn.btn-success(type="submit", onclick="location.href='/admin/empleado/insertar'")(style="font-weight: bold") Agregar Empleado
+        .row
+            .col
+                if (empT>=1) 
+                    table.table
+                        thead.bg-dark.text-white
+                            tr
+                                th(scope='col') DNI
+                                th(scope='col') Area
+                                th(scope='col') Nombre
+                                th(scope='col') Apellido 
+                                th(scope='col') Mail
+                                th(scope='col') Celular
+                                th(scope='col') Estado
+                                th(scope='col') Fecha Creacion 
+                                th(scope='col') Actualizar
+                                th(scope='col') Cambiar Estado
+                                th(scope='col') Cambiar de Area
+                            each empleado in Empleados
+                                tr.table-info
+                                    td(scope='row') #{empleado.dni}
+                                    td(scope='row') #{empleado.id_area ? empleado.Area.nombre_area : "No Asignada"}
+                                    td(scope='row') #{empleado.nombre}
+                                    td(scope='row') #{empleado.apellido}
+                                    td(scope='row') #{empleado.mail}
+                                    td(scope='row') #{empleado.celular}
+                                    if(empleado.estado == 1 )
+                                        td.text-center.bg-success(scope='row') Activo
+                                    else 
+                                        td.text-center.bg-danger(scope='row') Desactivo
+                                    td.text-center(scope='row') #{empleado.fecha_creacion}
+                                    td.text-center(scope='row') 
+                                        form(action="/admin/empleado/"+empleado.dni, method="get")
+                                            input.btn.btn-warning(type="submit", value="Actualizar")
+                                    td.text-center(scope='row')
+                                        form(action="/admin/empleado/e/"+empleado.dni, method="get")
+                                            if empleado.estado < 1
+                                                input.btn.btn-success(type="submit", value="Activar")
+                                            else
+                                                input.btn.btn-danger(type="submit", value="Desactivar")
+                                    td.text-center(scope='row') 
+                                        form(action="/admin/empleado/a/"+empleado.dni, method="get")
+                                            input.btn.btn-primary(type="submit", value="Reasignar")
+                else
+                    .col.ms-auto.me-auto.text-center
+                        h3 No se encontraron Empleados registrados
+        
+
