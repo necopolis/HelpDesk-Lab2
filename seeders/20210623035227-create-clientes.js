@@ -15,9 +15,9 @@ module.exports = {
       fecha_creacion: moment(new Date).format("YYYY-MM-DD"),
     },{
       dni: 42111222,
-      nombre: "Bora",
+      nombre: "Nora",
       apellido: "Rivero",
-      mail: "Nora@correo.com",
+      mail: "nora@correo.com",
       contraseña: await bcrypt.hash('12345678', 10),
       celular: null,
       estado: true,
