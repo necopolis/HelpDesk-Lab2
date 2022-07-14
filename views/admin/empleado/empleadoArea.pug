@@ -2,23 +2,20 @@ extends ../../layout
 block content
         .container
             .row
-                .col-10.ms-auto.text-center
+                .col-12.ms-auto.text-center
                     h1(style="font-weight: bold") Gestion de Area asignada
-                .col-2.ms-auto.me-auto
-                    .d-grid.gap-2
-                        button.btn.btn-danger(type="submit", onclick="location.href='/admin/empleado'")(style="font-weight: bold") VOLVER
             .row
-                .col-4.me-auto.text-center
+                .col-12.text-center
                     h2 Empleado: #{empleado.nombre} #{empleado.apellido}
             .row
-                .col-10.ms-auto.text-center
+                .col-12.ms-auto.text-center
                     h3 Area actual: #{nombreA}
             .row.align-items-center
                 .col-7.ms-auto.me-auto
                     - var url = empleado.dni + "?_method=PUT";
                     form(action="./"+url, method="post")
                         .mb-3.row
-                            label.col-sm-3.col-form-label.bg-dark(for="nombre") Area:
+                            label.col-sm-3.col-form-label.bol(for="nombre") Area:
                             select.form-select.form-select-sm(name="area")
                                 option(value= 0 ) No Asignada
                                 each a in area
@@ -29,4 +26,4 @@ block content
                         .mb-3.row
                             .col-sm-6.ms-auto.me-auto
                                 .d-grid.gap-2
-                                    input.btn.btn-success.btn-lg(type="submit", value="Actualizar")
+                                    input.btn.btn-dark.btn-lg(type="submit", value="Actualizar")

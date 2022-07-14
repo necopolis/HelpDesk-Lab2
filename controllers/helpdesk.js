@@ -4,7 +4,8 @@ const Area = require("../models").Area;
 const Solicitud = require("../models").Solicitud;
 
 exports.index = async (request, response)=>{
-    var empleado = await Empleado.findByPk(request.session.dni);
+    var empleado = await Empleado.findByPk(request.session.dni,
+        {include: Area});
     var solicitudes = await Historial.findAll({
         include:[{
             model: Solicitud, 
@@ -22,7 +23,7 @@ exports.index = async (request, response)=>{
         user:empleado,
         control:request.session.dni,
         Solicitud: solicitudes,
-        action:"helpdesk/cambiarCont",
+        pagina:"helpdesk",
         mensaje: request.flash('mensaje'),
         mensajeError: request.flash('mensajeError')
      });

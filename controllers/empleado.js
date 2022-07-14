@@ -26,8 +26,8 @@ exports.index = async (request, response)=>{
         title: "Area de " + empleado.Area.nombre_area,
         empleado: empleado,
         Solicitud: solicitudes,
-        control:request.session,
-        action:"empleado/cambiarCont",
+        user:empleado,
+        pagina:"empleado/cambiarCont",
         mensaje: request.flash('mensaje'),
         mensajeError: request.flash('mensajeError')
     });    
@@ -69,6 +69,7 @@ exports.listar = async (request, response) =>{
         Empleados: empleados,
         user: empleado,
         empleado: empleado,
+        pagina:"admin/cambiarCont",
         control:request.session,
         empT: a,
         mensaje: request.flash('mensaje'),
@@ -76,9 +77,12 @@ exports.listar = async (request, response) =>{
     });
 }
 exports.formAgregar = async (request, response) => {
+    const empleado = await Empleado.findByPk(request.session.dni);
     const areas = await Area.findAll();
     response.render("./admin/empleado/empleadoForm",{ 
         area: areas,
+        user:empleado,
+        pagina:"admin/cambiarCont",
         control:request.session,
         mensaje: request.flash('mensaje'),
         mensajeError: request.flash('mensajeError')
@@ -116,10 +120,11 @@ exports.agregar = async (request, response)=> {
 }
 exports.formActualizar = async (request, response) =>{
     const areas = await Area.findAll();
-    const empleado = await Empleado.findByPk(request.params.id);
+    const empleado = await Empleado.findByPk(request.session.dni);
     response.render("./admin/empleado/empleadoForm",{
         area: areas,
         user:empleado,
+        pagina:"admin/cambiarCont",
         control:request.session,
         empleado : empleado,
         mensaje: request.flash('mensaje'),
@@ -174,12 +179,13 @@ exports.desactivar = async (request, response) =>{
 }
 exports.formCambiarDeArea = async (request, response) =>{
     const areas = await Area.findAll();
-    const empleado = await Empleado.findByPk(request.params.id,{
+    const empleado = await Empleado.findByPk(request.session.dni,{
         include: Area}
     );
     response.render("./admin/empleado/empleadoArea",{
         nombreA: empleado.id_area ? empleado.Area.nombre_area : "No asignada",
         area: areas,
+        pagina:"admin/cambiarCont",
         control:request.session,
         user:empleado,
         empleado : empleado,

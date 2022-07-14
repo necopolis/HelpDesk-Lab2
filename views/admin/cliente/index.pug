@@ -1,14 +1,9 @@
 extends ../../layout
 block content
-    .bg-image(style="\
-        background-image: url('../../images/empleado.jpg'); height: 100vh;")
         .container(style="color:white")
             .row
-                .col-10.ms-auto.text-center
-                    h1.bg-dark Gestion de Clientes
-                //.col-2.ms-auto.me-auto
-                    .d-grid.gap-2
-                        button.btn.btn-danger(type="submit", onclick="location.href='/admin'")(style="font-weight: bold") VOLVER 
+                .col-12.ms-auto.text-center
+                    h1.text-dark Gestion de Clientes
                 .col-12.ms-auto.me-auto
                     if(mensaje.length > 0)
                         row.mx-auto

@@ -3,14 +3,11 @@ extends ../../layout
 block content
             .container
                 .row
-                    .col-10.ms-auto.text-center
+                    .col-12.ms-auto.text-center
                         if empleado 
-                            h1 Actualizar empleado #{empleado.nombre}  #{empleado.apellido}
+                            h1 Actualizando empleado: #{empleado.nombre}  #{empleado.apellido}
                         else
                             h1 Cargar Empleado
-                    .col-2.ms-auto.me-auto
-                        .d-grid.gap-2
-                            button.btn.btn-danger(type="submit", onclick="location.href='/admin/empleado'")(style="font-weight: bold") VOLVER 
                 .row.mx-auto
                     .col-5.mx-auto.my-4
                         .card.rounded

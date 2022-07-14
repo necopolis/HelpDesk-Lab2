@@ -3,19 +3,16 @@ extends ../../layout
 block content
     .container
         .row
-            .col-10.ms-auto.text-center
+            .col-12.ms-auto.text-center
                 h1.bold Gestion de Empleados
-            .col-2.ms-auto.me-auto
-                .d-grid.gap-2
-                    button.btn.btn-danger(type="submit", onclick="location.href='/admin'")(style="font-weight: bold") VOLVER 
             .col-12.ms-auto.me-auto
-                //if(mensaje.length > 0)
+                if(mensaje.length > 0)
                     .row.mx-auto
                         .col-5.mx-auto.mt-4.text-center
                         .alert.alert-info.alert-dismissible.fade.show(role='alert')
                             strong #{mensaje} 
                             button.btn-close(type='button' data-bs-dismiss='alert' aria-label='Close')
-                //if(mensajeError.length > 0)
+                if(mensajeError.length > 0)
                     .row.mx-auto
                         .col-5.mx-auto.mt-4.text-center
                         .alert.alert-info.alert-dismissible.fade.show(role='alert')
@@ -24,13 +21,13 @@ block content
         .row(style="padding-top: 3rem; padding-bottom: 3rem")
             .col-3.me-auto
                 .d-grid.gap-2
-                    button.btn.btn-success(type="submit", onclick="location.href='/admin/empleado/insertar'")(style="font-weight: bold") Agregar Empleado
+                    button.btn.btn-dark(type="submit", onclick="location.href='/admin/empleado/insertar'")(style="font-weight: bold") Agregar Empleado
         .row
             .col
                 if (empT>=1) 
                     table.table
-                        thead.bg-dark.text-white
-                            tr
+                        thead
+                            tr.bg-dark.text-white
                                 th(scope='col') DNI
                                 th(scope='col') Area
                                 th(scope='col') Nombre
@@ -43,7 +40,7 @@ block content
                                 th(scope='col') Cambiar Estado
                                 th(scope='col') Cambiar de Area
                             each empleado in Empleados
-                                tr.table-info
+                                tr
                                     td(scope='row') #{empleado.dni}
                                     td(scope='row') #{empleado.id_area ? empleado.Area.nombre_area : "No Asignada"}
                                     td(scope='row') #{empleado.nombre}

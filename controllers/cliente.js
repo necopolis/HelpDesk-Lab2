@@ -14,6 +14,7 @@ exports.index = async (request, response) =>{
     response.render("./cliente/index",{
         title: "Help Desk",
         user:cliente,
+        pagina:"cliente",
         cliente: cliente,
         solicitud: solicitudes,
         control:request.session,
@@ -26,6 +27,7 @@ exports.formSolicitud = async (request, response)=>{
     const cliente = await Cliente.findByPk(request.session.dni);
     response.render('./cliente/formSolicitud',{
         cliente: cliente,
+        pagina:"cliente",
         user:null
     });
 }
@@ -33,6 +35,7 @@ exports.formActualizar = async (request, response) =>{
     var cliente = await Cliente.findByPk(request.session.dni);
     response.render("./cliente/formActualizar", {
         cliente: cliente,
+        pagina:"cliente",
         control:request.session,
         mensaje: request.flash('mensaje'),
         mensajeError: request.flash('mensajeError')
@@ -76,6 +79,7 @@ exports.listarDesac = async (request, response) =>{
     var a = clientes.length;
     response.render("./admin/cliente/index",{
         Clientes: clientes,
+        pagina:"admin",
         user:empleado,
         control:request.session,
         cliT: a,

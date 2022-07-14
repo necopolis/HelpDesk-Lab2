@@ -1,10 +1,10 @@
-if(user)
+if(user || cliente)
   if (cliente)
     ul.nav.justify-content-center.p-2.bg-dark
-      //li.nav-item
+      li.nav-item
         a.nav-link.btn.btn-sm.btn-info(href='/cliente') Mis solicitudes
       li.nav-item
-        a.nav-link.btn.btn-sm.btn-info(type="submit" onclick="location.href='./cliente/solicitud'") Nueva solicitud
+        a.nav-link.btn.btn-sm.btn-info(href="/cliente/solicitud") Nueva solicitud
   else if (user.id_area == 1)
     ul.nav.justify-content-center.p-2.bg-dark
       li.nav-item

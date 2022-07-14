@@ -3,13 +3,14 @@ extends ../layout
 block content
     .container
         .row.align-items-center
-            .col-7.ms-auto.text-center
+            .col-7.mx-auto.text-center
                 h1(style="font-weight: bold") Actualizar cliente: #{cliente.nombre}  #{cliente.apellido}
-        .row.align-items-center
-            .col-4.ms-auto
-                h4 DNI: #{cliente.dni}
-            .col-4.me-auto
-                h4 Mail: #{cliente.mail}
+        .row
+            .card
+                .col-4.mx-auto
+                    h4 DNI: #{cliente.dni}
+                .col-4.mx-auto
+                    h4 Mail: #{cliente.mail}
         br
         .row.align-items-center
             .col-7.ms-auto.me-auto
@@ -27,4 +28,4 @@ block content
                     .mb-3.row
                         .col-sm-6.ms-auto.me-auto
                             .d-grid.gap-2
-                                input.btn.btn-success.btn-lg(type="submit", onclick="return validarRegistro()", value="Actualizar")
+                                input.btn.btn-dark.btn-lg(type="submit", onclick="return validarRegistro()", value="Actualizar")

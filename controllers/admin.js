@@ -7,7 +7,7 @@ exports.index = async (request, response)=>{
         title: "Area de Gestión",
         user: empleado,
         control:request.session,
-        action:"./cambiarCont",
+        pagina:"admin",
         mensaje: request.flash('mensaje'),
         mensajeError: request.flash('mensajeError')
     });

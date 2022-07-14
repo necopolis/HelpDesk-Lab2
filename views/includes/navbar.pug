@@ -11,7 +11,7 @@ nav.navbar.bg-dark.py-1
 			div.dropdown
 				a.btn.btn-sm.btn-info.rounded.dropdown-toggle(data-bs-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false') Usuario, #{user.mail}
 				.dropdown-menu.rounded.mr-auto
-					a.dropdown-item(type="submit" onclick="location.href='./cliente/actualizar'") Cuenta
+					//a.dropdown-item(href="./cliente/actualizar") Cuenta
 					a.dropdown-item(type='button' data-bs-toggle='modal' data-bs-target='#exampleModal') Cambiar contraseña
 					.dropdown-divider
 					a.dropdown-item(type="submit" onclick="location.href='/logout'") Salir
@@ -24,7 +24,7 @@ nav.navbar.bg-dark.py-1
 							.modal-body
 								.row.align-items-center
 									.col-7.ms-auto.me-auto
-										form(name="registro", action="./cambiarCont", method="post")
+										form(name="registro", action=`${pagina}/cambiarCont`, method="post")
 											.mb-3.row
 												label(for="antigua") Contraseña actual
 												input(type="password", name="antigua")

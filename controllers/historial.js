@@ -6,6 +6,7 @@ const Notificacion = require("../models").Notificacion;
 const Solicitud = require("../models").Solicitud;
 const { Op } = require("sequelize");
 const moment = require("moment");
+const { empleado } = require("./middleware");
 
 exports.listarSolicitud = async (request, response)=>{
     const cliente= await Cliente.findByPk(request.session.dni)
@@ -18,12 +19,15 @@ exports.listarSolicitud = async (request, response)=>{
     response.render("./cliente/seguimiento",{ 
         solicitudes: solicitud,
         cliente: cliente,
+        pagina:"cliente",
         control:request.session,
         mensaje: request.flash('mensaje'),
         mensajeError: request.flash('mensajeError')
     });
 }
 exports.obtenerSolicitud = async (request, response)=>{
+    var empleado = await Empleado.findByPk(request.session.dni,
+        {include: Area});
     var areas = await Area.findAll({
         where:{id_area: {
                 [Op.not]: request.session.area,},
@@ -54,6 +58,8 @@ exports.obtenerSolicitud = async (request, response)=>{
         response.render("./helpdesk/tareas", {
             solic: solicitud,
             area: areas,
+            pagina:"helpdesk",
+            user:empleado,
             control:request.session,
             s: s,
             mensaje: request.flash('mensaje'),
@@ -64,6 +70,8 @@ exports.obtenerSolicitud = async (request, response)=>{
         response.render("./empleados/tareas", {
             solic: solicitud,
             area: areas,
+            pagina:"empleado",
+            user:empleado,
             control:request.session,
             s: s,
             mensaje: request.flash('mensaje'),
@@ -125,6 +133,8 @@ exports.solucionar = async(request, response)=>{
     response.redirect("/" + request.session.rol);
 }
 exports.vistaNotific = async (request, response)=>{
+    var empleado = await Empleado.findByPk(request.session.dni,
+        {include: Area});
     var notific = await Notificacion.findByPk(request.params.id);
     var solicitud = await Historial.findAll({
         include:[{
@@ -137,12 +147,16 @@ exports.vistaNotific = async (request, response)=>{
         }});
         response.render("./calidad/atender", {
             notif: notific,
+            pagina:"calidad",
+            user:empleado,
             control:request.session,
             solic: solicitud
         });
 }
 exports.buscar = async (request, response)=>{
-        var s = await Solicitud.findOne({
+    var empleado = await Empleado.findByPk(request.session.dni,
+        {include: Area});    
+    var s = await Solicitud.findOne({
             where:{nro_ticket: request.body.ticket}
         });
         if(s){
@@ -152,6 +166,8 @@ exports.buscar = async (request, response)=>{
             });
             response.render("./cliente/seguimiento",{ 
                 solicitudes: solicitud,
+                pagina:"cliente",
+                user:empleado,
                 control:request.session
             });
         }

@@ -3,22 +3,19 @@ extends ../layout
 block content
     .container
         .row
-            .col-10.ms-auto.text-center
+            .col-12.ms-auto.text-center
                 h1(style="font-weight: bold") Atendiendo solicitud
-            .col-2.ms-auto.me-auto
-                .d-grid.gap-2
-                    button.btn.btn-danger(type="submit" onclick="location.href='/helpdesk'")(style="font-weight: bold") VOLVER 
         .row(style="padding-top: 3rem;")
             .col
                 table.table
-                    tr.table-primary.text-center
+                    tr.bg-dark.text-white
                         th Fecha de ingreso:
                         th Detalle
                         th Prioridad
                         th Estado
                         th Contacto Cliente
                         th Razon de tranferencia
-                    tr.table-info(style="font-weight: bold")  
+                    tr 
                         td.text-center= solic.fecha_ingreso.toLocaleString()
                         td= solic.Solicitud.detalle
                         td.text-center= solic.Solicitud.prioridad
@@ -48,7 +45,7 @@ block content
                     .mb-3.row
                         .col-sm-6.ms-auto.me-auto
                             .d-grid.gap-2
-                                input.btn.btn-success.btn-lg(type="submit",onclick="return validarRazon()", value="Transferir")
+                                input.btn.btn-dark.btn-lg(type="submit",onclick="return validarRazon()", value="Transferir")
             .col-5.ms-auto
                 h3 Solucionar:
                 form(action="../../solucionar/"+url, method="post")
@@ -71,4 +68,4 @@ block content
                     .mb-3.row
                         .col-sm-6.ms-auto.me-auto
                             .d-grid.gap-2
-                                input.btn.btn-success.btn-lg(type="submit", onclick="return validarSolucion()", value="Solucinar")
+                                input.btn.btn-dark.btn-lg(type="submit", onclick="return validarSolucion()", value="Solucinar")

@@ -14,6 +14,7 @@ exports.listar = async (request, response) =>{
     response.render("./admin/area/index", {
         Areas: areas,
         user: empleado,
+        pagina:"admin",
         areaT: a,
         control:request.session,
         mensaje: request.flash('mensaje'),
@@ -43,6 +44,7 @@ exports.formActualizar = async (request, response) =>{
     response.render("./admin/area/areaForm",{
         area: areaR,
         user: empleado,
+        pagina:"admin",
         control:request.session,
         mensaje: request.flash('mensaje'),
     mensajeError: request.flash('mensajeError')

@@ -16,6 +16,7 @@ block content
               .alert.alert-info.alert-dismissible.fade.show(role='alert')
                   strong #{mensajeError} 
                   button.btn-close(type='button' data-bs-dismiss='alert' aria-label='Close')
+    .row.mx-auto  
       .col-5.mx-auto.my-4
         .card
           .card-body.p-4
@@ -24,4 +25,5 @@ block content
                 label(for="ticket") Código de rastreo
                 input.form-control.rounded#tracking(type="text", name="ticket", placeholder="Inserte el numero de Ticket")
               .form-group.text-center
+                br
                 input.btn.btn-primary.rounded.text-center(type="submit", value="Buscar")
